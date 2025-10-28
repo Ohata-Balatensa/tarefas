@@ -4,16 +4,16 @@
 #include <ctype.h>
 
 typedef struct livro {
-    int reg;            // registro do livro
-    char titulo[80];    // título do livro
-    char status;        // [L]ivre ou [E]mprestado
+    int reg;
+    char titulo[80];
+    char status;
 } livro;
 
 typedef struct aluno {
-    char RA[7];         // RA do aluno
-    char nome[80];      // nome do aluno
-    int numreg;         // número do registro do livro
-    int dias;           // tempo de permanência - em dias
+    char RA[7];
+    char nome[80];
+    int numreg;
+    int dias;
 } aluno;
 
 void aloca_livro(livro **pliv, int qliv);
@@ -35,7 +35,7 @@ int main() {
     cadastra_livro(liv, 5);
 
     do {
-        system("cls"); // ou system("clear") no Linux
+        system("cls");
         printf("\n[1] Emprestimo");
         printf("\n[2] Devolucao");
         printf("\n[3] Mostrar Alunos");
@@ -64,8 +64,6 @@ int main() {
     free(alu);
     return 0;
 }
-
-//-----------------------------------------------------
 
 void aloca_livro(livro **pliv, int qliv) {
     if ((*pliv = (livro*) realloc(*pliv, qliv * sizeof(livro))) == NULL)
@@ -135,7 +133,6 @@ void devolucao(aluno *pal, int qal, livro *pliv, int qliv) {
         aux_reg = (pal + pos)->numreg;
         tempo = (pal + pos)->dias;
         (pliv + aux_reg - 1)->status = 'L';
-
         strcpy(titulo, (pliv + aux_reg - 1)->titulo);
         printf("\nNome: %s\nTitulo: %s\nDias: %d\n", (pal + pos)->nome, titulo, tempo);
         printf("\nDevolucao realizada com sucesso!\n\n");
